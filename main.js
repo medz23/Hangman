@@ -1,6 +1,6 @@
 const wordEl = document.getElementById('word');
 const wrongLettersEl = document.getElementById('wrong-letters');
-const playAgainBtn = document.getElementById('play-again');
+const playAgainBtn = document.getElementById('play-button');
 const popup = document.getElementById('popup-container');
 const notification = document.getElementById('notification-container');
 const finalMessage = document.getElementById('final-message');
@@ -15,7 +15,7 @@ const words = ['accomplish', 'acknowledge', 'assessment', 'beginning', 'celebrat
 
 let selectedWord = words[Math.floor(Math.random()*words.length)];
 
-const correctLetters = ['m','e', 'd', 'i'];
+const correctLetters = [];
 const wrongLetters = [];
 
 //show hidden words
@@ -38,6 +38,27 @@ function displayWord() {
 //update wrong letters
 
 function updateWrongLettersEl() {
+  //display wrong letters
+  wrongLettersEl.innerHTML = `
+    ${wrongLetters.length > 0 ? '<p>Wrong</p>': ''}
+    ${wrongLetters.map(letter => `<span>${letter}</span>`)}
+  `;
+  //display  parts
+  figureParts.forEach((part, index) => {
+    const errors = wrongLetters.length;
+
+    if(index < errors) {
+      part.style.display = 'block';
+    }
+    else{
+      part.style.display = 'none';
+    }
+  });
+  //lost
+  if(wrongLetters.length === figureParts.length) {
+    finalMessage.innerText = 'You Lost!';
+    popup.style.display = 'flex';
+  }
 
 }
 
@@ -77,4 +98,20 @@ window.addEventListener('keydown', e => {
       }
     }
 }});
+
+//play again button
+playAgainBtn.addEventListener('click', () => {
+  //empty array
+  correctLetters.splice(0);
+  wrongLetters.splice(0);
+
+  selectedWord = words[Math.floor(Math.random() * words.length)];
+
+  displayWord();
+
+  updateWrongLettersEl();
+
+  popup.style.display = 'none';
+})
+
 displayWord();
