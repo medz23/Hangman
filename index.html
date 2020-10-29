@@ -8,7 +8,34 @@
   <title>Hangman</title>
 </head>
 <body>
+  <h1>Hangman</h1>
+  <p>Find the hidden word</p>
+  <div class="game-container">
+    <svg height="260" width="200" class="figure-container">
+      <line x1="60" y1="20" x2="140" y2="20" />
+      <line x1="140" y1="20" x2="140" y2="40" />
+      <line x1="60" y1="20" x2="60" y2="250" />
+      <line x1="20" y1="250" x2="100" y2="250" />
 
+      <!-- head -->
+      <circle cx="140" cy="70" r="25" class="figure-part" />
+
+      <!-- body -->
+      <line x1="140" y1="100" x2="140" y2="170" class="figure-part" />
+
+      <!-- arms -->
+      <line x1="140" y1="140" x2="100" y2="110" class="figure-part" />
+      <line x1="140" y1="140" x2="180" y2="110"  class="figure-part" />
+
+      <!-- legs -->
+      <line x1="140" y1="170" x2="100" y2="220" class="figure-part" />
+      <line x1="140" y1="170" x2="180" y2="220" class="figure-part" />
+
+
+
+    </svg>
+
+  </div>
 
   <script src="./main.js"></script>
 </body>
